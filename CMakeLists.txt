@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.0)
+get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+project(${PROJECT_NAME} LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+include_directories(source)
+aux_source_directory(source SOURCE_DIR)
+add_executable(${PROJECT_NAME} ${SOURCE_DIR})
