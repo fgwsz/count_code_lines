@@ -41,7 +41,9 @@ std::size_t count_lines_in_directory(fs::path const& dir_path){
 }
 int main(int argc,char* argv[]){
     if(argc<2){
-        std::cerr<<"Usage: "<<argv[0]<<" <directory>"<<std::endl;
+        std::cerr<<"Usage: "<<argv[0]
+            <<" <directory 1> ... <directory N(N>=1)>"
+            <<std::endl;
         return 1;
     }
     fs::path directory={};
