@@ -1,32 +1,31 @@
 #include<cstddef>//std::size_t
 #include<filesystem>//std::filesystem
 #include<iostream>//std::cerr std::cout
-#include"count_lines_in_directory.hpp"
+#include"count_lines_in_path.hpp"
 #include"Timer.hpp"
 int main(int argc,char* argv[]){
     if(argc<2){
         std::cerr<<"Usage: "<<argv[0]
-            <<" <directory 1> ... <directory N(N>=1)>"
+            <<" <path 1> ... <path N(N>=1)>"
             <<std::endl;
         return 1;
     }
-    std::filesystem::path directory={};
+    std::filesystem::path path={};
     std::size_t total_lines=0;
     std::size_t lines=0;
     Timer total_timer={};
     Timer timer={};
     total_timer.start();
     for(int index=1;index<argc;++index){
-        directory=argv[index];
-        if (!std::filesystem::is_directory(directory)){
-            std::cerr<<"Error: "<<directory<<" is not a valid directory."
-                <<std::endl;
+        path=argv[index];
+        if (!std::filesystem::exists(path)){
+            std::cerr<<"Error: "<<path<<" is not a valid path."<<std::endl;
             continue;
         }
         timer.start();
-        lines=count_lines_in_directory(directory);
+        lines=count_lines_in_path(path);
         timer.stop();
-        std::cout<<"Lines of C++ code in \""<<directory.string()
+        std::cout<<"Lines of C++ code in \""<<path.string()
             <<"\": "<<lines
             <<" ("<<timer.delta_string()<<")"<<std::endl;
         total_lines+=lines;
