@@ -27,7 +27,7 @@ int main(int argc,char* argv[]){
         lines=count_lines_in_directory(directory);
         timer.stop();
         std::cout<<"Lines of C++ code in \""<<directory.string()
-            <<"\" : "<<lines
+            <<"\": "<<lines
             <<" ("<<timer.delta_string()<<")"<<std::endl;
         total_lines+=lines;
     }

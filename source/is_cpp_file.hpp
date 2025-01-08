@@ -7,7 +7,9 @@ bool is_cpp_file(std::filesystem::path const& file_path){
     };
     std::string const extension=file_path.extension().string();
     for(auto const& element:valid_extensions){
-        if(element==extension){return true;}
+        if(element==extension){
+            return true;
+        }
     }
     return false;
 }
