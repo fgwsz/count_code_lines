@@ -23,7 +23,7 @@ int main(int argc,char* argv[]){
         if (!std::filesystem::exists(path)){
             std::fprintf(
                 stderr
-                ,"Error: %s is not a valid path.\n"
+                ,"Error: \"%s\" is not a valid path.\n"
                 ,path.string().c_str()
             );
             continue;
