@@ -17,7 +17,7 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
     );
     if(!file){
         std::fprintf(
-            stderr,"Error: fopen(\"%s\") failed!\n"
+            stderr,"Error: std::fopen(\"%s\") failed!\n"
             ,absolute_path.c_str()
         );
         return 0;
@@ -26,7 +26,7 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
     std::size_t lines=0;
     std::size_t index=0;
     std::size_t size=0;
-    while((count=fread(buffer,sizeof(char),sizeof(buffer),file))>0){
+    while((count=std::fread(buffer,sizeof(char),sizeof(buffer),file))>0){
         for(index=0;index<count;++index){
             if(buffer[index]=='\n'){
                 ++lines;
@@ -34,9 +34,9 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
         }
         size=count;
     }
-    if(ferror(file)){
+    if(std::ferror(file)){
         std::fprintf(
-            stderr,"Error: fread(\"%s\") failed!\n"
+            stderr,"Error: std::fread(\"%s\") failed!\n"
             ,absolute_path.c_str()
         );
         std::fclose(file);
@@ -46,6 +46,6 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
     if((size>0)&&(buffer[size-1]!='\n')){
         ++lines;
     }
-    fclose(file);
+    std::fclose(file);
     return lines;
 }
