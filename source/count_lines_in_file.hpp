@@ -1,6 +1,7 @@
 #pragma once
 #include<cstddef>//std::size_t
-#include<cstdio>//std::fopen
+#include<cstdio>
+//std::FILE std::fopen std::fclose std::fread std::fprintf std::ferror
 #include<filesystem>//std::filesystem
 #include"is_cpp_file.hpp"
 // 统计文件的行数
