@@ -4,22 +4,21 @@
 //std::FILE std::fopen std::fclose std::fread std::fprintf std::ferror
 #include<filesystem>//std::filesystem
 #include"is_cpp_file.hpp"
-// 统计文件的行数
-std::size_t count_lines_in_file(std::filesystem::path const& file_path){
+//统计文件的行数
+inline std::size_t count_lines_in_file(
+    std::filesystem::path const& file_path
+){
     if(!is_cpp_file(file_path)){
         return 0;
     }
     static char buffer[1024*1024]={};
-    static std::string absolute_path={};
-    absolute_path=std::filesystem::absolute(file_path).string();
-    std::FILE* file=std::fopen(
-        absolute_path.c_str()
-        ,"rb"
-    );
+    std::string const&& path=file_path.string();
+    std::FILE* file=std::fopen(path.c_str(),"rb");
     if(!file){
         std::fprintf(
-            stderr,"Error: std::fopen(\"%s\") failed!\n"
-            ,absolute_path.c_str()
+            stderr
+            ,"Error: std::fopen(\"%s\") failed!\n"
+            ,path.c_str()
         );
         return 0;
     }
@@ -37,13 +36,14 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
     }
     if(std::ferror(file)){
         std::fprintf(
-            stderr,"Error: std::fread(\"%s\") failed!\n"
-            ,absolute_path.c_str()
+            stderr
+            ,"Error: std::fread(\"%s\") failed!\n"
+            ,path.c_str()
         );
         std::fclose(file);
         return 0;
     }
-    // 最后一行为一行数据但不含'\n'
+    //最后一行为一行数据但不含'\n'
     if((size>0)&&(buffer[size-1]!='\n')){
         ++lines;
     }

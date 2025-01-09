@@ -1,13 +1,15 @@
 #include<cstddef>//std::size_t
+#include<cstdio>//std::fprintf std::printf
 #include<filesystem>//std::filesystem
-#include<iostream>//std::cerr std::cout
 #include"count_lines_in_path.hpp"
 #include"Timer.hpp"
 int main(int argc,char* argv[]){
     if(argc<2){
-        std::cerr<<"Usage: "<<argv[0]
-            <<" <path 1> ... <path N(N>=1)>"
-            <<std::endl;
+        std::fprintf(
+            stderr
+            ,"Usage: %s <path 1> ... <path N(N>=1)>\n"
+            ,argv[0]
+        );
         return 1;
     }
     std::filesystem::path path={};
@@ -19,19 +21,29 @@ int main(int argc,char* argv[]){
     for(int index=1;index<argc;++index){
         path=argv[index];
         if (!std::filesystem::exists(path)){
-            std::cerr<<"Error: "<<path<<" is not a valid path."<<std::endl;
+            std::fprintf(
+                stderr
+                ,"Error: %s is not a valid path.\n"
+                ,path.string().c_str()
+            );
             continue;
         }
         timer.start();
         lines=count_lines_in_path(path);
         timer.stop();
-        std::cout<<"Lines of C++ code in \""<<path.string()
-            <<"\": "<<lines
-            <<" ("<<timer.delta_string()<<")"<<std::endl;
+        std::printf(
+            "Lines of C++ code in \"%s\": %ju (%s)\n"
+            ,path.string().c_str()
+            ,lines
+            ,timer.delta_string().c_str()
+        );
         total_lines+=lines;
     }
     total_timer.stop();
-    std::cout<<"Total lines of C++ code: "<<total_lines
-        <<" ("<<total_timer.delta_string()<<")"<<std::endl;
+    std::printf(
+        "Total lines of C++ code: %ju (%s)\n"
+        ,total_lines
+        ,total_timer.delta_string().c_str()
+    );
     return 0;
 }
