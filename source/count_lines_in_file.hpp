@@ -8,36 +8,44 @@ std::size_t count_lines_in_file(std::filesystem::path const& file_path){
     if(!is_cpp_file(file_path)){
         return 0;
     }
-    static char buffer[1024]={};
+    static char buffer[1024*1024]={};
+    static std::string absolute_path={};
+    absolute_path=std::filesystem::absolute(file_path).string();
     std::FILE* file=std::fopen(
-        std::filesystem::absolute(file_path).string().c_str()
+        absolute_path.c_str()
         ,"rb"
     );
     if(!file){
         std::fprintf(
-            stderr,"Error: fopen(\"%s\") error!\n"
-            ,std::filesystem::absolute(file_path).string().c_str()
+            stderr,"Error: fopen(\"%s\") failed!\n"
+            ,absolute_path.c_str()
         );
         return 0;
     }
     std::size_t count=0;
     std::size_t lines=0;
     std::size_t index=0;
+    std::size_t size=0;
     while((count=fread(buffer,sizeof(char),sizeof(buffer),file))>0){
         for(index=0;index<count;++index){
             if(buffer[index]=='\n'){
                 ++lines;
             }
         }
+        size=count;
     }
     if(ferror(file)){
         std::fprintf(
-            stderr,"Error: fread(\"%s\") error!\n"
-            ,std::filesystem::absolute(file_path).string().c_str()
+            stderr,"Error: fread(\"%s\") failed!\n"
+            ,absolute_path.c_str()
         );
         std::fclose(file);
         return 0;
     }
-    std::fclose(file);
+    // 最后一行为一行数据但不含'\n'
+    if((size>0)&&(buffer[size-1]!='\n')){
+        ++lines;
+    }
+    fclose(file);
     return lines;
 }
