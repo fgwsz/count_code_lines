@@ -46,19 +46,14 @@ void count_lines(char const** path_list,std::size_t count){
                 ,"Error: \"%s\" is not a valid path.\n"
                 ,path_list[index]
             );
-            return;
+            //return;//支持继续计算输入正确的路径的代码行数量信息
         }
     }
     std::size_t total_lines=0;
-    std::size_t lines=0;
     Timer total_timer={};
-    Timer timer={};
     total_timer.start();
     for(std::size_t index=0;index<count;++index){
-        timer.start();
-        lines=_get_lines(path_list[index]);
-        timer.stop();
-        total_lines+=lines;
+        total_lines+=_get_lines(path_list[index]);
     }
     total_timer.stop();
     std::printf(
@@ -70,14 +65,15 @@ void count_lines(char const** path_list,std::size_t count){
     for(auto const& pair:_lines_of_language){
         result.emplace(_LanguageInfo{pair.first,pair.second});
     }
+    //下面这一行是得到std::size_t最大值变成字符串的最长文本宽度
     std::size_t lines_width=std::to_string((std::size_t)-1).size();
     std::string lines_title="Lines";
-    lines_title.resize(lines_width,' ');
+    lines_title.resize(lines_width,' ');//补空格对齐
     std::printf("%s|Percent\t |Language\n",lines_title.c_str());
     std::string info_lines={};
     for(auto const& info:result){
         info_lines=std::to_string(info.lines_);
-        info_lines.resize(lines_width,' ');
+        info_lines.resize(lines_width,' ');//补空格对齐
         std::printf(
             "%s|%.2f\t%%|%s\n"
             ,info_lines.c_str()
