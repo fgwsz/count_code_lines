@@ -46,6 +46,7 @@ void count_lines(char const** path_list,std::size_t count){
                 ,"Error: \"%s\" is not a valid path.\n"
                 ,path_list[index]
             );
+            return;
         }
     }
     std::size_t total_lines=0;
