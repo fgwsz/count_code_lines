@@ -20,6 +20,7 @@ language_of_extension={
     {".litcoffee","CoffeeScript"},
     {".lisp","Common Lisp"},
     {".cl","Common Lisp"},
+    {".clj","Clojure"},
     //D
     {".d","D"},
     {".dart","Dart"},
@@ -40,8 +41,10 @@ language_of_extension={
     {".fs","F#"},
     //G
     {".go","Go"},
+    {".gd","GDScript"},
     {".groovy","Groovy"},
     //H
+    {".hs","Haskell"},
     //I
     //J
     {".java","Java"},
@@ -56,6 +59,8 @@ language_of_extension={
     //O
     {".m","Objective-C"},
     {".mm","Objective-C++"},
+    {".ml","OCaml"},
+    {".mli","OCaml"},
     //P
     {".pl","Perl"},
     {".php","PHP"},
@@ -82,6 +87,7 @@ language_of_extension={
     //V
     {".vb","Visual Basic"},
     {".vbs","VBScript"},
+    {".vim","VimScript"},
     //W
     //X
     //Y
