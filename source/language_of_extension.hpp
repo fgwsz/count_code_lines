@@ -169,6 +169,8 @@ language_of_extension={
     {".TS","TypeScript"},
     //U
     //V
+    {".vala","Vala"},
+    {".VALA","Vala"},
     {".vb","Visual Basic"},
     {".VB","Visual Basic"},
     {".vbs","VBScript"},
