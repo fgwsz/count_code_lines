@@ -17,6 +17,8 @@ language_of_extension={
     {".s","Assembly"},
     {".S","Assembly"},
     //B
+    {".sh","Bourne Shell"},
+    {".SH","Bourne Shell"},
     //C
     {".c","C"},
     {".C","C"},
@@ -71,6 +73,8 @@ language_of_extension={
     {".elisp","Emacs Lisp"},
     {".ELISP","Emacs Lisp"},
     //F
+    {".fish","Fish Shell"},
+    {".FISH","Fish Shell"},
     {".f","Fortran"},
     {".F","Fortran"},
     {".f90","Fortran"},
@@ -156,8 +160,6 @@ language_of_extension={
     //S
     {".scala","Scala"},
     {".SCALA","Scala"},
-    {".sh","Shell"},
-    {".SH","Shell"},
     {".sql","SQL"},
     {".SQL","SQL"},
     {".swift","Swift"},
@@ -178,5 +180,7 @@ language_of_extension={
     //Y
     //Z
     {".zig","Zig"},
-    {".ZIG","Zig"}
+    {".ZIG","Zig"},
+    {".zsh","Z Shell"},
+    {".ZSH","Z Shell"}
 };
