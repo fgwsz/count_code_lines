@@ -70,8 +70,8 @@ language_of_extension={
     //E
     {".erl","Erlang"},
     {".ERL","Erlang"},
-    {".elisp","Emacs Lisp"},
-    {".ELISP","Emacs Lisp"},
+    {".el","Emacs Lisp"},
+    {".EL","Emacs Lisp"},
     //F
     {".fish","Fish Shell"},
     {".FISH","Fish Shell"},
@@ -79,6 +79,8 @@ language_of_extension={
     {".F","Fortran"},
     {".f90","Fortran"},
     {".F90","Fortran"},
+    {".f95","Fortran"},
+    {".F95","Fortran"},
     {".f03","Fortran"},
     {".F03","Fortran"},
     {".f08","Fortran"},
@@ -109,6 +111,10 @@ language_of_extension={
     {".JAVA","Java"},
     {".js","JavaScript"},
     {".JS","JavaScript"},
+    {".mjs","JavaScript"},
+    {".MJS","JavaScript"},
+    {".cjs","JavaScript"},
+    {".CJS","JavaScript"},
     {".jl","Julia"},
     {".JL","Julia"},
     //K
@@ -175,8 +181,8 @@ language_of_extension={
     {".VB","Visual Basic"},
     {".vbs","VBScript"},
     {".VBS","VBScript"},
-    {".vim","VimScript"},
-    {".VIM","VimScript"},
+    {".vim","Vim Script"},
+    {".VIM","Vim Script"},
     //W
     //X
     //Y
